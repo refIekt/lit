@@ -11,7 +11,7 @@ Simply start any command with `lit`. For example `rails server` becomes:
 lit rails server
 ```
 
-Running a script like `ruby script.rb` becomes:
+A script like `ruby script.rb` becomes:
 ```
 lit ruby script.rb
 ```
