@@ -13,8 +13,7 @@ lit bundle exec rails server
 
 ## Installation
 
-Applications using the Lit API should install the `lit` command in your terminal.
-To install it manually run:
+Applications using the Lit API should install the `lit` command for you. To install it manually run:
 ```
 gem install lit-cli
 ```
