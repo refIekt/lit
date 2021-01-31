@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.email       = 'maediprichard@gmail.com'
 
   spec.summary     = "Shine a light on terminal commands. 🔥"
-  spec.description = "Show log messages in the terminal by starting commands with 'lit'."
+  spec.description = "Show more detailed logs by starting commands with 'lit'."
   spec.homepage    = 'https://reflekt.dev/lit'
   spec.license     = 'MPL-2.0'
 
@@ -16,6 +16,8 @@ Gem::Specification.new do |spec|
   ]
   spec.require_paths = ["lib"]
 
-  spec.executables << 'lit-cli'
+  spec.add_dependency "pastel"
+
+  #spec.executables << 'lit-cli'
 
 end

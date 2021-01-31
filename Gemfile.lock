@@ -1,0 +1,21 @@
+PATH
+  remote: .
+  specs:
+    lit-cli (0.0.1)
+      pastel
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    pastel (0.8.0)
+      tty-color (~> 0.5)
+    tty-color (0.6.0)
+
+PLATFORMS
+  x86_64-darwin-19
+
+DEPENDENCIES
+  lit-cli!
+
+BUNDLED WITH
+   2.2.6
