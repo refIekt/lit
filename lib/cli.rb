@@ -6,7 +6,7 @@
 #   lit bundle exec rails server
 ################################################################################
 
-# Enable the API.
+# Enable Lit API.
 ENV['LIT_ENABLED'] = 'true'
 
 # Action original command.
