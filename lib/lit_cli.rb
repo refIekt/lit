@@ -3,7 +3,7 @@
 
 require 'pastel'
 
-module LitAPI
+module LitCLI
 
   @@pastel = Pastel.new
 

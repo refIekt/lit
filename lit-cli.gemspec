@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.license     = 'MPL-2.0'
 
   spec.files = [
-    "lib/api.rb",
+    "lib/lit_cli.rb",
   ]
   spec.require_paths = ["lib"]
 

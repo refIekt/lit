@@ -63,8 +63,8 @@ Instructions for integrating your application with Lit.
 
 At the top of your file add:
 ```ruby
-require 'lit-cli'
-include LitAPI
+require 'lit_cli'
+include LitCLI
 ```
 
 Then use the `lit()` method:
