@@ -1,6 +1,9 @@
 # Gem.
-/.bundle/
-/pkg/
+.bundle
+pkg
+
+# Binary.
+bin
 
 # Mac.
 .DS_Store
