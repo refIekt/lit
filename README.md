@@ -32,6 +32,59 @@ Applications using the Lit API should install the `lit` command for you. To inst
 gem install lit-cli
 ```
 
+## Flags
+
+Lit accepts flags to modify behaviour. They are prefixed with an `@` and added directly after the `lit` command:
+```
+lit @flag ruby script.rb --verbose
+```
+
+Lit flags start with an `@` instead of a `--` so that they aren't confused with flags for the command Lit is firing off.
+
+### Status
+
+Filter logs by status:
+```
+lit @status=error ruby script.rb
+```
+
+### Delay
+
+Delay the execution of a program to make logs easier to read. The default delay is `0` seconds (no delay) but could be 1 second, for example:
+```
+lit @delay=1 ruby script.rb
+```
+
 ## API
 
-To integrate your application see the [Lit API](https://github.com/lit-cli/lit-api).
+Instructions for integrating your application with Lit.
+
+### Usage
+
+At the top of your file add:
+```ruby
+require 'lit-cli'
+include Lit
+```
+
+Then use the `lit()` method:
+```ruby
+lit "message"
+```
+
+### Installation
+
+In Gemfile add:
+```ruby
+gem 'lit-cli'
+```  
+
+In terminal run:
+```
+bundle install
+```
+
+Or:
+```
+gem install lit-cli
+```
