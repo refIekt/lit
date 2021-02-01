@@ -1,9 +1,11 @@
+#!/usr/bin/env ruby
+
 ################################################################################
 # Usage:
 #   lit <command>
 #
 # Example:
-#   lit bundle exec rails server
+#   lit rails server
 ################################################################################
 
 # Enable Lit API.

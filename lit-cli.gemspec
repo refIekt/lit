@@ -1,8 +1,8 @@
 Gem::Specification.new do |spec|
 
   spec.name        = 'lit-cli'
-  spec.version     = '0.0.1'
-  spec.date        = '2021-01-30'
+  spec.version     = '0.0.2'
+  spec.date        = '2021-02-01'
   spec.authors     = ["Maedi Prichard"]
   spec.email       = 'maediprichard@gmail.com'
 
@@ -11,13 +11,8 @@ Gem::Specification.new do |spec|
   spec.homepage    = 'https://reflekt.dev/lit'
   spec.license     = 'MPL-2.0'
 
-  spec.files = [
-    "lib/cli.rb",
-  ]
-  spec.require_paths = ["lib"]
-
   spec.add_dependency "pastel"
 
-  #spec.executables << 'lit-cli'
+  spec.executables << 'lit'
 
 end
