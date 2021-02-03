@@ -1,8 +1,8 @@
 Gem::Specification.new do |spec|
 
   spec.name        = 'lit-cli'
-  spec.version     = '0.0.3'
-  spec.date        = '2021-02-01'
+  spec.version     = '0.1.0'
+  spec.date        = '2021-02-03'
   spec.authors     = ["Maedi Prichard"]
   spec.email       = 'maediprichard@gmail.com'
 
@@ -12,6 +12,7 @@ Gem::Specification.new do |spec|
   spec.license     = 'MPL-2.0'
 
   spec.files = [
+    "lib/config.rb",
     "lib/lit_cli.rb",
   ]
   spec.require_paths = ["lib"]

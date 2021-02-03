@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    lit-cli (0.0.2)
+    lit-cli (0.1.0)
       pastel
 
 GEM
