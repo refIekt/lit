@@ -1,6 +1,3 @@
-# TODO: Define environment variable in parent process, not just child process.
-# ENV['LIT_SUPPORTED'] = 'true'
-
 require 'pastel'
 
 module LitCLI
@@ -32,5 +29,6 @@ module LitCLI
 
     end
   end
+  alias 🔥 lit
 
 end
