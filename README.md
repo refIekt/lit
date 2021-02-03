@@ -48,11 +48,11 @@ Step through the code. The terminal will stop at each `lit` message, then prompt
 lit @step ruby script.rb
 ```
 
-### State
+### Type
 
-Filter logs by status:
+Filter logs by message type:
 ```
-lit @state=error ruby script.rb
+lit @type=error ruby script.rb
 ```
 
 ### Delay
@@ -78,6 +78,12 @@ Then use the `lit()` method:
 ```ruby
 lit "message"
 ```
+
+Display a warning message:
+```ruby
+lit "Danger, Will Robinson!", :warn
+```
+Message types can be configured, see `demo/demo.rb` for more info.
 
 #### Code as comments
 

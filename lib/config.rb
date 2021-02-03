@@ -9,6 +9,7 @@ module LitCLI
         :pass => { icon: "✔", color: :green },
         :warn => { icon: "⚠", color: :yellow },
         :fail => { icon: "⨯", color: :red },
+        :error => { icon: "!", color: :red },
         :debug => { icon: "?", color: :purple },
       }
     end
