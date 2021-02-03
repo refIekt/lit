@@ -1,5 +1,5 @@
-require_relative '../lib/api.rb'
-include LitAPI
+require_relative '../lib/lit_cli.rb'
+include LitCLI
 
 # Demo script.
 lit "my message"

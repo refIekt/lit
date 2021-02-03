@@ -11,6 +11,21 @@
 # Enable Lit API.
 ENV['LIT_ENABLED'] = 'true'
 
+args = []
+flags = []
+
+# Get flags from arguments.
+ARGV.each do |arg|
+  if arg.start_with? '@'
+    flags << arg.delete_prefix('@')
+  else
+    args << arg
+  end
+end
+ENV['LIT_FLAGS'] = flags.join " "
+
+# Get user input.
+command = args.join " "
+
 # Action original command.
-command = ARGV.join " "
 system command
