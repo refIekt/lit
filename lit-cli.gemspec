@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.authors     = ["Maedi Prichard"]
   spec.email       = 'maediprichard@gmail.com'
   spec.summary     = "Shine a light on terminal commands. 🔥"
-  spec.description = "Console logs that are only visible after prefixing a process with `lit`"
+  spec.description = "Console logs that are only visible after prefixing commands with 'lit'."
   spec.homepage    = 'https://reflekt.dev/lit'
   spec.license     = 'MPL-2.0'
 
