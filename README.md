@@ -28,7 +28,7 @@ lit ruby script.rb
 Then run the application and watch the terminal window for Lit messages:
 <pre class="code">
 🔥 12:50 <span style="color:blue">ℹ info</span> Half price books at Jane's Book Emporium
-🔥 12:50 <span style="color:green">✔ pass</span> Amazing news, we're getting married
+🔥 12:50 <span style="color:green">✔ pass</span> Amazing news, we're getting married!
 🔥 12:50 <span style="color:red">⨯ fail</span> They've run out of ice cream Timmy
 </pre>
 
@@ -57,7 +57,7 @@ lit @type=error ruby script.rb
 
 #### @delay
 
-Delay the execution of a program to make logs easier to read. The default delay is `0` seconds (no delay) but can be any positive `Integer` or `Float`, for example:
+Delay the execution of a message to make fast outputting logs easier to read. The default delay is `0` seconds (no delay) but can be any positive `Integer` or `Float`, for example:
 ```
 lit @delay=1 ruby script.rb
 ```

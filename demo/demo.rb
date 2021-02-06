@@ -1,4 +1,4 @@
-require_relative '../lib/lit_cli.rb'
+require 'lit_cli'
 include LitCLI
 
 ################################################################################
@@ -20,7 +20,7 @@ end
 
 # Show some messages in the terminal.
 lit "Half price books at Jane's Book Emporium"
-lit "Amazing news, we're getting married", :pass
+lit "Amazing news, we're getting married!", :pass
 lit "Danger, Will Robinson!", :warn
 lit "They've run out of ice cream Timmy", :fail
 lit "I am never gonna financially recover from this", :error
