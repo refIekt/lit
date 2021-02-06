@@ -25,14 +25,7 @@ A script like `ruby script.rb` becomes:
 lit ruby script.rb
 ```
 
-## Installation
-
-Applications using the Lit API should install the `lit` command for you. To install it manually run:
-```
-gem install lit-cli
-```
-
-## Flags
+### Flags
 
 Lit accepts flags to modify behaviour. They are prefixed with an `@` and added directly after the `lit` command:
 ```
@@ -41,26 +34,49 @@ lit @<flag-name> ruby <script-name>.rb
 
 Flags start with an `@` instead of a `--` so that they aren't confused with flags for the original command that Lit is firing off.
 
-### @step
+#### @step
 
 Step through the code. The terminal will stop at each `lit` message, then prompt you to press *Enter* to continue to the next.
 ```
 lit @step ruby script.rb
 ```
 
-### @type
+#### @type
 
 Filter logs by message type:
 ```
 lit @type=error ruby script.rb
 ```
 
-### @delay
+#### @delay
 
 Delay the execution of a program to make logs easier to read. The default delay is `0` seconds (no delay) but can be any positive `Integer` or `Float`, for example:
 ```
 lit @delay=1 ruby script.rb
 ```
+
+## Installation
+
+```
+gem install lit-cli
+```
+
+In Gemfile add:
+```ruby
+gem 'lit-cli'
+```  
+
+In terminal run:
+```
+bundle install
+```
+
+Or:
+```
+gem install lit-cli
+```
+
+If an application is using Lit then the `lit` command will already be available.
 
 ## API
 
@@ -112,20 +128,3 @@ action.control = control
 ```
 
 The lit emoji acts as a nice sectional heading too. These are all just ideas and it's up to you to decide how to write code and save the future of humanity.
-
-### Installation
-
-In Gemfile add:
-```ruby
-gem 'lit-cli'
-```  
-
-In terminal run:
-```
-bundle install
-```
-
-Or:
-```
-gem install lit-cli
-```
