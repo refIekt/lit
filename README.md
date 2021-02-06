@@ -25,6 +25,13 @@ A script like `ruby script.rb` becomes:
 lit ruby script.rb
 ```
 
+Then run the application and watch the terminal window for Lit messages:
+<pre class="code">
+🔥 12:50 <span style="color:blue">ℹ info</span> Half price books at Jane's Book Emporium
+🔥 12:50 <span style="color:green">✔ pass</span> Amazing news, we're getting married
+🔥 12:50 <span style="color:red">⨯ fail</span> They've run out of ice cream Timmy
+</pre>
+
 ### Flags
 
 Lit accepts flags to modify behaviour. They are prefixed with an `@` and appended after the `lit` command:
