@@ -1,8 +1,8 @@
 Gem::Specification.new do |spec|
 
   spec.name        = 'lit-cli'
-  spec.version     = '0.1.0'
-  spec.date        = '2021-02-03'
+  spec.version     = '0.2.0'
+  spec.date        = '2021-02-06'
   spec.authors     = ["Maedi Prichard"]
   spec.email       = 'maediprichard@gmail.com'
 

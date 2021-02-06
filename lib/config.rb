@@ -66,14 +66,14 @@ module LitCLI
           values = flag.split('=')
 
           key = values.shift.to_sym
-          args = values.split(',')
 
           # No arguments.
-          if args.empty?
-            flags[key] = {}
+          if values.empty?
+            flags[key] = nil
           else
+            args = values.pop.split(',')
             # Single argument.
-            if args.count = 1
+            if args.count == 1
               flags[key] = args.first
             # Multiple arguments.
             else
@@ -85,7 +85,14 @@ module LitCLI
 
       @type = flags[:type] if flags.has_key? :type
       @step = true if flags.has_key? :step
-      @delay = flags[:delay] if flags.has_key? 'delay'
+
+      if flags.has_key? :delay
+        unless flags[:delay].nil?
+          @delay = flags[:delay].to_f
+        else
+          puts "🔥 ERROR: Invalid argument."
+        end
+      end
     end
 
   end

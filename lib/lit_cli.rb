@@ -8,10 +8,9 @@ module LitCLI
   def lit(message, type = :info)
     if @@config.enabled
       filter(type)
-
       render(type)
-
       step()
+      delay()
     end
   end
   alias 🔥 lit
@@ -28,7 +27,6 @@ module LitCLI
     puts message
   end
 
-
   def filter(type)
     if @@config.type
 
@@ -41,9 +39,9 @@ module LitCLI
     end
   end
 
-  def step()
-    if @@config.step
-
+  def delay()
+    if @@config.delay > 0
+      sleep(@@config.delay)
     end
   end
 
@@ -72,6 +70,10 @@ module LitCLI
 
     # Override config from command line.
     @@config.cli_configure()
+  end
+
+  def self.error(message)
+    puts "🔥 ERROR: #{message}"
   end
 
 end
