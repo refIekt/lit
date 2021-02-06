@@ -27,9 +27,8 @@ lit "I am never gonna financially recover from this", :error
 lit "Life is only temporary", :debug
 
 # Hey, I'm just a random bit of code doing some stuff.
-add_me = 2 + 5
-log_me = "OMG you're like together now!"
-puts log_me + " " + add_me.to_s
+puts "OMG you're like together now!"
+puts "2 + 5 equals #{2 + 5}"
 
 long_message = %Q(
   To be, or not to be, that is the question:

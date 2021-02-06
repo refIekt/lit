@@ -8,13 +8,11 @@
 #   lit rails server
 ################################################################################
 
-# Enable Lit API.
 ENV['LIT_ENABLED'] = 'true'
 
+# Get flags from arguments.
 args = []
 flags = []
-
-# Get flags from arguments.
 ARGV.each do |arg|
   if arg.start_with? '@'
     flags << arg.delete_prefix('@')
