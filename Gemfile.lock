@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    lit-cli (0.2.0)
+    lit-cli (0.3.0)
       pastel
 
 GEM
@@ -18,4 +18,4 @@ DEPENDENCIES
   lit-cli!
 
 BUNDLED WITH
-   2.2.6
+   2.2.8

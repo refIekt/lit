@@ -27,18 +27,20 @@ module LitCLI
     puts message
   end
 
+  def step()
+    if @@config.step
+      puts "🔥 PRESS ENTER:"
+      input = gets.chomp
+      binding while input == nil
+    end
+  end
+
   def filter? type
     unless @@config.type.nil? || @@config.type.include?(type)
       return true
     end
 
     false
-  end
-
-  def step()
-    if @@config.step
-
-    end
   end
 
   def delay()
@@ -72,10 +74,6 @@ module LitCLI
 
     # Override config from command line.
     @@config.cli_configure()
-  end
-
-  def self.error(message)
-    puts "🔥 ERROR: #{message}"
   end
 
 end
