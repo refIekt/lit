@@ -83,14 +83,21 @@ module LitCLI
         end
       end
 
-      @type = flags[:type] if flags.has_key? :type
+      if flags.has_key? :type
+        unless flags[:type].nil?
+          @type = Array(flags[:type]).map(&:to_sym)
+        else
+          puts "🔥 ERROR: Invalid argument for @type."
+        end
+      end
+
       @step = true if flags.has_key? :step
 
       if flags.has_key? :delay
         unless flags[:delay].nil?
           @delay = flags[:delay].to_f
         else
-          puts "🔥 ERROR: Invalid argument."
+          puts "🔥 ERROR: Invalid argument for @delay."
         end
       end
     end

@@ -7,7 +7,7 @@ module LitCLI
 
   def lit(message, type = :info)
     if @@config.enabled
-      filter(type)
+      return if filter? type
       render(type)
       step()
       delay()
@@ -27,10 +27,12 @@ module LitCLI
     puts message
   end
 
-  def filter(type)
-    if @@config.type
-
+  def filter? type
+    unless @@config.type.nil? || @@config.type.include?(type)
+      return true
     end
+
+    false
   end
 
   def step()
