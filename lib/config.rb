@@ -1,3 +1,5 @@
+require 'set'
+
 module LitCLI
 
   ##############################################################################
@@ -15,6 +17,9 @@ module LitCLI
   ##############################################################################
 
   class Config
+
+    # Track errors and only show them once.
+    @@errors = Set.new
 
     attr_accessor :enabled
     attr_accessor :types
@@ -83,23 +88,27 @@ module LitCLI
         end
       end
 
-      if flags.has_key? :type
-        unless flags[:type].nil?
-          @type = Array(flags[:type]).map(&:to_sym)
-        else
-          puts "🔥 ERROR: Invalid argument for @type."
-        end
-      end
-
       @step = true if flags.has_key? :step
+      @type = Array(flags[:type]).map(&:to_sym) if valid? flags, :type
+      @delay = flags[:delay].to_f if valid? flags, :delay
+    end
 
-      if flags.has_key? :delay
-        unless flags[:delay].nil?
-          @delay = flags[:delay].to_f
-        else
-          puts "🔥 ERROR: Invalid argument for @delay."
-        end
+    def valid? flags, flag
+      # Has flag even been entered on the command line?
+      unless flags.has_key? flag
+        return false
       end
+
+      if flags[flag].nil?
+        error = "🔥 ERROR: Invalid argument for @#{flag}."
+        unless @@errors.include? error
+          @@errors.add error
+          puts error
+        end
+        return false
+      end
+
+      true
     end
 
   end
