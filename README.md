@@ -27,7 +27,7 @@ lit ruby script.rb
 
 ### Flags
 
-Lit accepts flags to modify behaviour. They are prefixed with an `@` and added directly after the `lit` command:
+Lit accepts flags to modify behaviour. They are prefixed with an `@` and appended after the `lit` command:
 ```
 lit @<flag-name> ruby <script-name>.rb
 ```
@@ -36,7 +36,7 @@ Flags start with an `@` instead of a `--` so that they aren't confused with flag
 
 #### @step
 
-Step through the code. The terminal will stop at each `lit` message, then prompt you to press *Enter* to continue to the next.
+Step through the code. The terminal will stop at each `lit` message, then prompt you to press *Enter* to continue to the next message.
 ```
 lit @step ruby script.rb
 ```
@@ -57,10 +57,6 @@ lit @delay=1 ruby script.rb
 
 ## Installation
 
-```
-gem install lit-cli
-```
-
 In Gemfile add:
 ```ruby
 gem 'lit-cli'
@@ -76,7 +72,7 @@ Or:
 gem install lit-cli
 ```
 
-If an application is using Lit then the `lit` command will already be available.
+If an application is currently using Lit then the `lit` command will already be available in your terminal without any installation required.
 
 ## API
 
