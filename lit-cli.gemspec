@@ -1,8 +1,8 @@
 Gem::Specification.new do |spec|
 
   spec.name        = 'lit-cli'
-  spec.version     = '0.3.0'
-  spec.date        = '2021-02-06'
+  spec.version     = '0.4.0'
+  spec.date        = '2021-02-07'
   spec.authors     = ["Maedi Prichard"]
   spec.email       = 'maediprichard@gmail.com'
   spec.summary     = "Shine a light on terminal commands. 🔥"
@@ -13,10 +13,12 @@ Gem::Specification.new do |spec|
   spec.files = [
     "lib/config.rb",
     "lib/lit_cli.rb",
+    "lib/lit_pry.rb",
   ]
   spec.require_paths = ["lib"]
 
   spec.add_dependency "pastel"
+  spec.add_dependency "pry"
 
   spec.executables << 'lit'
 

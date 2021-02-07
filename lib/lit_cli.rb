@@ -1,21 +1,24 @@
+require 'pry'
 require 'pastel'
 require 'config'
+require 'lit_pry'
 
 module LitCLI
   @@pastel = Pastel.new
   @@config = Config.new
+  @@is_prying = false
 
   def lit(message, type = :info)
     if @@config.enabled
-      return if filter? type
-      render(type)
-      step()
-      delay()
+      return if LitCLI.filter? type
+      LitCLI.render(type)
+      LitCLI.step()
+      LitCLI.delay()
     end
   end
   alias 🔥 lit
 
-  def render(type)
+  def self.render(type)
     type_config = @@config.types[type]
 
     time_text = LitCLI.colorize(Time.now().strftime("%k:%M"), :cyan)
@@ -27,15 +30,16 @@ module LitCLI
     puts message
   end
 
-  def step()
+  def self.step()
     if @@config.step
-      puts "🔥 PRESS ENTER:"
+      puts "🔥 Press ENTER to step or P to Pry:"
       input = gets.chomp
       binding while input == nil
+      @@is_prying = true if input.downcase == "p"
     end
   end
 
-  def filter? type
+  def self.filter? type
     unless @@config.type.nil? || @@config.type.include?(type)
       return true
     end
@@ -43,10 +47,14 @@ module LitCLI
     false
   end
 
-  def delay()
+  def self.delay()
     if @@config.delay > 0
       sleep(@@config.delay)
     end
+  end
+
+  def self.is_prying?
+    @@config.step && @@is_prying
   end
 
   def self.colorize(text, color)
