@@ -8,7 +8,6 @@ include LitCLI
 ################################################################################
 
 LitCLI.configure do |config|
-
   # Override the default message statuses.
   config.statuses = {
     :info => { icon: "ℹ", color: :blue },
@@ -18,15 +17,14 @@ LitCLI.configure do |config|
     :error => { icon: "!", color: :red },
     :debug => { icon: "?", color: :purple },
   }
-
+  # Add message types representing this application's data types.
   config.types = {
     :advert => { color: :red, styles: [:bold, :upcase] },
     :person => { color: :blue, styles: [:bold, :upcase] },
     :robot => { styles: [:dim, :bold, :upcase] },
   }
-
 end
 
-# View demo.rb to see lit in action.
+# Run the demo. See demo.rb to see lit() messages in action.
 demo = Demo.new
 demo.run

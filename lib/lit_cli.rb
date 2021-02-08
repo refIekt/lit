@@ -8,18 +8,18 @@ module LitCLI
   @@config = Config.new
   @@is_prying = false
 
-  def lit(message, status = :info, type = nil)
+  def lit(message, status = :info, type = nil, context = nil)
     if @@config.enabled
       return if LitCLI.filter_status? status
       return if LitCLI.filter_type? type
-      LitCLI.render(message, status, type)
+      LitCLI.render(message, status, type, context)
       LitCLI.step()
       LitCLI.delay()
     end
   end
   alias 🔥 lit
 
-  def self.render(message, status, type)
+  def self.render(message, status, type, context)
     text = "🔥"
 
     # Time.
@@ -39,6 +39,9 @@ module LitCLI
         text << LitCLI.format(" #{type.to_s}", config)
       end
     end
+
+    # Context.
+    text << LitCLI.format(" #{context}", styles: [:bold, :dim])
 
     # Message.
     text << " #{message}"
@@ -91,6 +94,8 @@ module LitCLI
           text = text.upcase
         when :downcase
           text = text.downcase
+        when :capitalize
+          text = text.capitalize
         end
       end
       # Then apply styling.
