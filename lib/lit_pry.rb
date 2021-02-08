@@ -41,6 +41,8 @@ if ENV['LIT_FLAGS'] && ENV['LIT_FLAGS'].include?('step')
     end
 
     # TODO: Investigate RubyGems `require` before overriding.
+    # SEE: https://github.com/ruby/ruby/blob/v2_6_3/lib/rubygems/core_ext/kernel_require.rb
+    #
     # def require path
     #   absolute_path = File.join(Dir.pwd, path)
     #   #p "requiring #{absolute_path}"

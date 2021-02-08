@@ -51,12 +51,26 @@ lit @step ruby script.rb
 **Note:** Only files required via `require_relative` are currently supported for Pry session.  
 **Note:** Pry is not available to `lit()` messages in the *first* file to `require 'lit_cli'`, so require Lit in your application's entry point / main file if you need this feature.
 
+#### @status
+
+Filter logs by message status:
+```
+lit @status=error ruby script.rb
+```
+
+Multiple statuses are comma separated:
+```
+lit @status=fail,error ruby script.rb
+```
+
 #### @type
 
 Filter logs by message type:
 ```
-lit @type=error ruby script.rb
+lit @type=cat,dog ruby script.rb
 ```
+
+Types are optional and represent the type of data, similar to a class.
 
 #### @delay
 

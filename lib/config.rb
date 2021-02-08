@@ -22,14 +22,17 @@ module LitCLI
     @@errors = Set.new
 
     attr_accessor :enabled
+    attr_accessor :statuses
     attr_accessor :types
-    attr_accessor :type
+    # Flags.
     attr_accessor :step
+    attr_accessor :status
+    attr_accessor :type
     attr_accessor :delay
 
     def initialize()
 
-      @types = {
+      @statuses = {
         :info => { icon: "ℹ", color: :blue },
         :pass => { icon: "✔", color: :green },
         :warn => { icon: "⚠", color: :yellow },
@@ -37,6 +40,8 @@ module LitCLI
         :error => { icon: "!", color: :red },
         :debug => { icon: "?", color: :purple },
       }
+
+      @types = nil
 
       # Lit is disabled by default, then enabled via the `lit` command.
       # Or it can be permanently enabled, without the use of the `lit` command.
@@ -48,11 +53,14 @@ module LitCLI
       # Flag defaults when not supplied via command line.
       ##
 
-      # Array of types to filter by, for example... [:warn, :error, :fail]
-      @type = nil
-
       # Boolean on whether or not to step through each lit() breakpoint.
       @step = false
+
+      # Array of statuses to filter by, for example: [:warn, :error, :fail]
+      @status = nil
+
+      # Array of types to filter by, for example: [:cat, :dog, :tree]
+      @type = nil
 
       # Integer or float representing amount of seconds to delay each lit() by.
       @delay = 0
@@ -89,6 +97,7 @@ module LitCLI
       end
 
       @step = true if flags.has_key? :step
+      @status = Array(flags[:status]).map(&:to_sym) if valid? flags, :status
       @type = Array(flags[:type]).map(&:to_sym) if valid? flags, :type
       @delay = flags[:delay].to_f if valid? flags, :delay
     end
