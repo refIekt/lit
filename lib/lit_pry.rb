@@ -60,25 +60,31 @@ if ENV['LIT_FLAGS'] && ENV['LIT_FLAGS'].include?('step')
       unless @@lit_processed_paths.include? file_path
         @@lit_processed_paths.add file_path
 
+        binding = "{ binding.pry if LitCLI.is_prying?; @@is_prying = false }"
         new_lines = ''
+        line_count = 0
+        new_lines_count = 0
+
         File.foreach(file_path) do |line|
+          line_count = line_count + 1
 
           # Pass current directory into the next file's requires.
           if line.strip.start_with? 'require_relative '
             line = line.strip + ", '#{absolute_path.join('/')}'\n"
             new_lines << line
           else
-            new_lines << line
-          end
-
-          # Add pry binding beneath each lit message.
-          if line.strip.start_with? 'lit "'
-            new_lines << "binding.pry if LitCLI.is_prying?\n"
-            new_lines << "@@is_prying = false\n"
+            # Add pry binding beneath each lit message.
+            if line.strip.start_with? 'lit '
+              lit_args = line.strip.delete_prefix('lit ').delete_suffix("\n")
+              new_lines << "lit(#{lit_args}) #{binding} \n"
+            else
+              new_lines << line
+            end
           end
         end
 
         eval(new_lines, get_binding(__dir__ = absolute_path), file_path)
+
         return true
       # Path has already been required.
       else

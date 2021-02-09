@@ -12,8 +12,12 @@ module LitCLI
     if @@config.enabled
       return if LitCLI.filter_status? status
       return if LitCLI.filter_type? type
+
       LitCLI.render(message, status, type, context)
+
       LitCLI.step()
+      yield if block_given?
+
       LitCLI.delay()
     end
   end
