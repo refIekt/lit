@@ -2,6 +2,9 @@
 if ENV['LIT_FLAGS'] && ENV['LIT_FLAGS'].include?('step')
   require 'set'
 
+  # TODO: Investigate RubyGems `require` before overriding.
+  # SEE: https://github.com/ruby/ruby/blob/v2_6_3/lib/rubygems/core_ext/kernel_require.rb
+
   module Kernel
 
     @@lit_processed_paths = Set.new
@@ -75,7 +78,7 @@ if ENV['LIT_FLAGS'] && ENV['LIT_FLAGS'].include?('step')
           end
         end
 
-        eval(new_lines, get_binding(__dir__ = absolute_path))
+        eval(new_lines, get_binding(__dir__ = absolute_path), file_path)
         return true
       # Path has already been required.
       else
@@ -84,34 +87,10 @@ if ENV['LIT_FLAGS'] && ENV['LIT_FLAGS'].include?('step')
     end
 
     def get_binding(__dir__)
-      return binding
+      # Don't go to this binding when Pry session activated.
+      # The variables have already been evaluated by eval(). NEEDS CONFIRMATION.
+      # Setting file_path in eval() negates this fix but will keep just in case.
+      return binding unless LitCLI.is_prying?
     end
-
-    # TODO: Investigate RubyGems `require` before overriding.
-    # SEE: https://github.com/ruby/ruby/blob/v2_6_3/lib/rubygems/core_ext/kernel_require.rb
-    #
-    # def require path
-    #   absolute_path = File.join(Dir.pwd, path)
-    #   #p "requiring #{absolute_path}"
-    #   #p __dir__
-    #   #p File.dirname(File.realpath(__FILE__))
-    #   #p File.realpath(__FILE__)
-    #
-    #   # Split client-side and server-side code.
-    #   new_lines = []
-    #   binding_line = "binding.pry if LitCLI.is_prying?"
-    #
-    #   # Add pry binding beneath each lit message.
-    #   p path
-    #   File.foreach(path) do |line|
-    #     new_lines << line
-    #     if line.strip.start_with? 'lit "'
-    #       new_lines << binding_line
-    #     end
-    #   end
-    #
-    #   eval(new_lines.join)
-    # end
-
   end
 end
