@@ -4,13 +4,13 @@ if ENV['LIT_FLAGS'] && ENV['LIT_FLAGS'].include?('step')
 
   module Kernel
 
-    @@required_paths = Set.new
+    @@lit_processed_paths = Set.new
 
     def require_relative relative_path, current_directory = nil
       unless relative_path.nil?
 
         # Handle absolute path.
-        if File.exist? relative_path
+        if relative_path.start_with?('/') && File.exist?(relative_path)
           absolute_path = relative_path.split('/')
           file_name = absolute_path.pop
         # Handle relative path.
@@ -54,12 +54,13 @@ if ENV['LIT_FLAGS'] && ENV['LIT_FLAGS'].include?('step')
 
         file_path = File.join(absolute_path.join('/'), file_name)
 
-        unless @@required_paths.include? file_path
-          @@required_paths.add file_path
+        unless @@lit_processed_paths.include? file_path
+          @@lit_processed_paths.add file_path
 
-          # Add pry binding beneath each lit message.
           new_lines = ''
           File.foreach(file_path) do |line|
+
+            # Pass current directory into the next file's requires.
             if line.strip.start_with? 'require_relative '
               line = line.strip + ", '#{absolute_path.join('/')}'\n"
               new_lines << line
@@ -67,6 +68,7 @@ if ENV['LIT_FLAGS'] && ENV['LIT_FLAGS'].include?('step')
               new_lines << line
             end
 
+            # Add pry binding beneath each lit message.
             if line.strip.start_with? 'lit "'
               new_lines << "binding.pry if LitCLI.is_prying?\n"
               new_lines << "@@is_prying = false\n"
@@ -74,6 +76,7 @@ if ENV['LIT_FLAGS'] && ENV['LIT_FLAGS'].include?('step')
           end
 
           eval(new_lines, get_binding(__dir__ = absolute_path))
+          return true
         # Path has already been required.
         else
           return false
