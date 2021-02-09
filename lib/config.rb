@@ -33,12 +33,12 @@ module LitCLI
     def initialize()
 
       @statuses = {
-        :info => { icon: "ℹ", color: :blue },
-        :pass => { icon: "✔", color: :green },
-        :warn => { icon: "⚠", color: :yellow },
-        :fail => { icon: "⨯", color: :red },
-        :error => { icon: "!", color: :red },
-        :debug => { icon: "?", color: :purple },
+        :info => { icon: "ℹ", color: :blue, styles: [:upcase] },
+        :pass => { icon: "✔", color: :green, styles: [:upcase] },
+        :warn => { icon: "⚠", color: :yellow, styles: [:upcase] },
+        :fail => { icon: "⨯", color: :red, styles: [:upcase] },
+        :error => { icon: "!", color: :red, styles: [:upcase] },
+        :debug => { icon: "?", color: :purple, styles: [:upcase] },
       }
 
       @types = nil

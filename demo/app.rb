@@ -10,18 +10,18 @@ include LitCLI
 LitCLI.configure do |config|
   # Override the default message statuses.
   config.statuses = {
-    :info => { icon: "ℹ", color: :blue },
-    :pass => { icon: "✔", color: :green },
-    :warn => { icon: "⚠", color: :yellow },
-    :fail => { icon: "⨯", color: :red },
-    :error => { icon: "!", color: :red },
-    :debug => { icon: "?", color: :purple },
+    :info => { icon: "ℹ", color: :blue, styles: [:upcase] },
+    :pass => { icon: "✔", color: :green, styles: [:upcase] },
+    :warn => { icon: "⚠", color: :yellow, styles: [:upcase] },
+    :fail => { icon: "⨯", color: :red, styles: [:upcase] },
+    :error => { icon: "!", color: :red, styles: [:upcase] },
+    :debug => { icon: "?", color: :purple, styles: [:upcase] },
   }
   # Add message types representing this application's data types.
   config.types = {
-    :advert => { color: :red, styles: [:bold, :upcase] },
-    :person => { color: :blue, styles: [:bold, :upcase] },
-    :robot => { styles: [:dim, :bold, :upcase] },
+    :advert => { color: :red, styles: [:bold, :capitalize] },
+    :person => { color: :blue, styles: [:bold, :capitalize] },
+    :robot => { styles: [:dim, :bold, :capitalize] },
   }
 end
 
