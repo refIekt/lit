@@ -1,6 +1,10 @@
 # Only override kernel methods when Lit's @step flag is true.
 if ENV['LIT_FLAGS'] && ENV['LIT_FLAGS'].include?('step')
+  require 'set'
+
   module Kernel
+
+    @@required_paths = Set.new
 
     def require_relative relative_path, current_directory = nil
       unless relative_path.nil?
@@ -49,25 +53,31 @@ if ENV['LIT_FLAGS'] && ENV['LIT_FLAGS'].include?('step')
         end
 
         file_path = File.join(absolute_path.join('/'), file_name)
-        p file_path
 
-        # Add pry binding beneath each lit message.
-        new_lines = ''
-        File.foreach(file_path) do |line|
-          if line.strip.start_with? 'require_relative '
-            line = line.strip + ", '#{absolute_path.join('/')}'\n"
-            new_lines << line
-          else
-            new_lines << line
+        unless @@required_paths.include? file_path
+          @@required_paths.add file_path
+
+          # Add pry binding beneath each lit message.
+          new_lines = ''
+          File.foreach(file_path) do |line|
+            if line.strip.start_with? 'require_relative '
+              line = line.strip + ", '#{absolute_path.join('/')}'\n"
+              new_lines << line
+            else
+              new_lines << line
+            end
+
+            if line.strip.start_with? 'lit "'
+              new_lines << "binding.pry if LitCLI.is_prying?\n"
+              new_lines << "@@is_prying = false\n"
+            end
           end
 
-          if line.strip.start_with? 'lit "'
-            new_lines << "binding.pry if LitCLI.is_prying?\n"
-            new_lines << "@@is_prying = false\n"
-          end
+          eval(new_lines, get_binding(__dir__ = absolute_path))
+        # Path has already been required.
+        else
+          return false
         end
-
-        eval(new_lines, get_binding(__dir__ = absolute_path))
       else
         super
       end
