@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    lit-cli (0.6.2)
+    lit-cli (0.6.3)
       pastel
       pry
 
@@ -18,6 +18,7 @@ GEM
     tty-color (0.6.0)
 
 PLATFORMS
+  ruby
   x86_64-darwin-19
 
 DEPENDENCIES

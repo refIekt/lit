@@ -60,7 +60,6 @@ if ENV['LIT_FLAGS'] && ENV['LIT_FLAGS'].include?('step')
       unless @@lit_processed_paths.include? file_path
         @@lit_processed_paths.add file_path
 
-        binding = "{ binding.pry if LitCLI.is_prying?; @@is_prying = false }"
         new_lines = ''
         line_count = 0
         new_lines_count = 0
@@ -72,14 +71,11 @@ if ENV['LIT_FLAGS'] && ENV['LIT_FLAGS'].include?('step')
           if line.strip.start_with? 'require_relative '
             line = line.strip + ", '#{absolute_path.join('/')}'\n"
             new_lines << line
+          # Add pry binding on each lit method.
+          elsif lit_line = Kernel.add_lit_binding(line)
+            new_lines << lit_line
           else
-            # Add pry binding beneath each lit message.
-            if line.strip.start_with? 'lit '
-              lit_args = line.strip.delete_prefix('lit ').delete_suffix("\n")
-              new_lines << "lit(#{lit_args}) #{binding} \n"
-            else
-              new_lines << line
-            end
+            new_lines << line
           end
         end
 
@@ -97,6 +93,17 @@ if ENV['LIT_FLAGS'] && ENV['LIT_FLAGS'].include?('step')
       # The variables have already been evaluated by eval(). NEEDS CONFIRMATION.
       # Setting file_path in eval() negates this fix but will keep just in case.
       return binding unless LitCLI.is_prying?
+    end
+
+    def self.add_lit_binding(line)
+      ['lit ', 'lit(', '🔥 ', '🔥(', '🔥'].each do |needle|
+        if line.strip.start_with? needle
+          args = line.strip.delete_prefix(needle).delete_suffix(")").chomp
+          return "lit(#{args}) { binding.pry if LitCLI.is_prying?; @@is_prying = false } \n"
+        end
+      end
+
+      false
     end
   end
 end

@@ -18,7 +18,7 @@ class Demo
     lit "I am never gonna financially recover from this", :error, :person
     amount_owing = 5 * 5 * 5 * 5 * 5 * 5 * 5 * 5 * 5
 
-    lit "Life is only temporary", :debug, :person
+    🔥 "Life is only temporary", :debug, :person
     woke = true
 
     # Hey, I'm just a random bit of code doing some stuff.
