@@ -149,7 +149,7 @@ module LitCLI
   def self.configure()
     yield(@@config)
 
-    # Override config from command line.
+    # Override config from flags on command line.
     @@config.cli_configure()
   end
 

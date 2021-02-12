@@ -70,7 +70,10 @@ module LitCLI
 
     # Override config from command line.
     def cli_configure()
-      @enabled = true if ENV['LIT_ENABLED'] == 'true'
+
+      # Enable lit via the command line.
+      @enabled = true if ENV['LIT_ENABLED'] == Time.now.to_i.to_s
+      return unless @enabled
 
       # Convert flag string to hash.
       flags = {}

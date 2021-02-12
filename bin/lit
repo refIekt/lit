@@ -8,7 +8,7 @@
 #   lit rails server
 ################################################################################
 
-ENV['LIT_ENABLED'] = 'true'
+ENV['LIT_ENABLED'] = Time.now.to_i.to_s
 
 # Get flags from arguments.
 args = []

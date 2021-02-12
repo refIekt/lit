@@ -1,8 +1,8 @@
 Gem::Specification.new do |spec|
 
   spec.name        = 'lit-cli'
-  spec.version     = '0.6.3'
-  spec.date        = '2021-02-11'
+  spec.version     = '0.6.4'
+  spec.date        = '2021-02-12'
   spec.authors     = ["Maedi Prichard"]
   spec.email       = 'maediprichard@gmail.com'
   spec.summary     = "Shine a light on terminal commands. 🔥"
