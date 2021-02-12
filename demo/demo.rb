@@ -8,30 +8,22 @@ class Demo
 
     lit "Amazing news, we're getting married!", :pass, :person
     rules = "Gift policy: Please bring 1 shucked oyster per person."
+    puts "Random output 1"
 
     lit "Danger, Will Robinson!", :warn, :robot
     robot_kill_mode = [true, false].sample
 
     lit "They've run out of ice cream Timmy", :fail, :person
     grandparents = {anne: "awesome", david: "kind"}
+    puts "Random output 2"
 
     lit "I am never gonna financially recover from this", :error, :person
     amount_owing = 5 * 5 * 5 * 5 * 5 * 5 * 5 * 5 * 5
 
-    🔥 "Life is only temporary", :debug, :person
+    🔥 "The meaning of life is to find meaning", :debug, :person
     woke = true
 
     # Hey, I'm just a random bit of code doing some stuff.
-    puts "OMG you're like together now!"
     puts "2 + 5 equals #{2 + 5}"
-
-    # Hey, I'm just a long message on multiple lines.
-    long_message = %Q(
-      To be, or not to be, that is the question:
-      Whether 'tis nobler in the mind to suffer
-      The slings and arrows of outrageous fortune,
-      Or to take Arms against a Sea of troubles,
-    )
-    lit long_message
   end
 end
