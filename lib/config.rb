@@ -72,7 +72,7 @@ module LitCLI
     def cli_configure()
 
       # Enable lit via the command line.
-      @enabled = true if ENV['LIT_ENABLED'] == Time.now.to_i.to_s
+      @enabled = true if ENV['LIT_ENABLED'].to_i >= (Time.now.to_i() - 1)
       return unless @enabled
 
       # Convert flag string to hash.
