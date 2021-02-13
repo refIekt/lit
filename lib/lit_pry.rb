@@ -1,5 +1,5 @@
 # Only override kernel methods when Lit's @step flag is true.
-if ENV['LIT_FLAGS'] && ENV['LIT_FLAGS'].include?('step')
+if ENV['LIT_ENABLED'] && ENV['LIT_ENABLED'].to_i >= (Time.now.to_i() - 1) && ENV['LIT_FLAGS'] && ENV['LIT_FLAGS'].include?('step')
   require 'set'
 
   # TODO: Investigate RubyGems `require` before overriding.

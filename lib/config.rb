@@ -53,9 +53,6 @@ module LitCLI
       # Flag defaults when not supplied via command line.
       ##
 
-      # Boolean on whether or not to step through each lit() breakpoint.
-      @step = false
-
       # Array of statuses to filter by, for example: [:warn, :error, :fail]
       @status = nil
 
@@ -65,6 +62,14 @@ module LitCLI
       # Integer or float representing amount of seconds to delay each lit() by.
       @delay = 0
 
+      ##
+      # PRIVATE.
+      ##
+
+      # Boolean on whether or not to step through each lit() breakpoint.
+      # Setting to true here wont enable Pry, best to enable via command line.
+      @step = false
+
       cli_configure()
     end
 
@@ -72,7 +77,7 @@ module LitCLI
     def cli_configure()
 
       # Enable lit via the command line.
-      @enabled = true if ENV['LIT_ENABLED'].to_i >= (Time.now.to_i() - 1)
+      @enabled = true if ENV['LIT_ENABLED'] && ENV['LIT_ENABLED'].to_i >= (Time.now.to_i() - 1)
       return unless @enabled
 
       # Convert flag string to hash.
