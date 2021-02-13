@@ -13,9 +13,9 @@ module LitCLI
       return if LitCLI.filter_status? status
       return if LitCLI.filter_type? type
 
-      LitCLI.render(message, status, type, context)
+      indent = LitCLI.render(message, status, type, context)
 
-      LitCLI.step()
+      LitCLI.step(indent)
       yield if block_given?
 
       LitCLI.delay()
@@ -55,20 +55,24 @@ module LitCLI
       end
     end
 
+    indent = ''
     while message.start_with?('>')
       message.delete_prefix!('>').strip!
       unless @@config.status || @@config.type
+        indent = indent + '  '
         output = '  ' + output
       end
     end
 
     output << " #{message}"
     puts output
+
+    return indent
   end
 
-  def self.step()
+  def self.step(indent)
     if @@config.step
-      puts "🔥 Press ENTER to step or P to Pry:"
+      puts "#{indent}🔥 Press ENTER to step or P to Pry:"
       input = gets.chomp
       binding while input == nil
       @@is_prying = true if input.downcase == "p"
