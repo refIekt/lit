@@ -24,33 +24,46 @@ module LitCLI
   alias 🔥 lit
 
   def self.render(message, status, type, context)
-    text = "🔥"
+    output = "🔥"
 
     # Time.
     time = LitCLI.format(Time.now().strftime("%k:%M"), color: :cyan)
-    text << " #{time}"
+    output << " #{time}"
 
     # Status.
     config = @@config.statuses[status]
-    text << LitCLI.format(" #{config[:icon]} #{status.to_s}", config)
+    output << LitCLI.format(" #{config[:icon]} #{status.to_s}", config)
 
     # Type.
     if !@@config.types.nil? && @@config.types.has_key?(type)
       config = @@config.types[type]
       if config.has_key? :icon
-        text << LitCLI.format(" #{config[:icon]} #{type.to_s}", config)
+        output << LitCLI.format(" #{config[:icon]} #{type.to_s}", config)
       else
-        text << LitCLI.format(" #{type.to_s}", config)
+        output << LitCLI.format(" #{type.to_s}", config)
       end
     end
 
     # Context.
-    text << LitCLI.format(" #{context}", styles: [:bold, :dim])
+    output << LitCLI.format(" #{context}", styles: [:bold, :dim])
 
     # Message.
-    text << " #{message}"
+    while message.start_with?('^')
+      message.delete_prefix!('^').strip!
+      unless @@config.status || @@config.type
+        output = "\n" + output
+      end
+    end
 
-    puts text
+    while message.start_with?('>')
+      message.delete_prefix!('>').strip!
+      unless @@config.status || @@config.type
+        output = '  ' + output
+      end
+    end
+
+    output << " #{message}"
+    puts output
   end
 
   def self.step()

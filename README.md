@@ -104,13 +104,18 @@ Instructions for integrating your application with Lit.
 
 ### Usage
 
-At the top of your file add:
+Require `lit_cli` at the top of your file:
 ```ruby
 require 'lit_cli'
-include LitCLI
 ```
 
-Then use the `lit()` method:
+Include `LitCLI` in your `module` or `class`:
+```ruby
+class ExampleClass
+  include LitCLI
+```
+
+Then use the `lit()` instance method:
 ```ruby
 lit "message"
 ```
@@ -118,19 +123,19 @@ lit "message"
 ### lit()
 
 ```ruby
-lit message, status = :info, type = nil, context = nil
+lit(message, status = :info, type = nil, context = nil)
 ```
 
 * String `message` - The message to show.
 * Symbol `status` (optional) - The status of the message such as `:info`, `:warn` or `:error`.
-* Symbol `type` (optional) - The type of data or entity this message represents such as `:ad` or `:person`.
-* String `context` (optional) - The current class name or object ID, anything that gives context.
+* Symbol `type` (optional) - The type of data this message represents such as `:cat` or `:dog`.
+* String `context` (optional) - The current class name or instance ID, anything that gives context.
 
 Available statuses and types can be configured, see `lib/config.rb` and `demo/demo.rb` for more info.
 
 ### Symbols
 
-Special characters contain extra meaning when embedded in the `message` string.
+Special characters convey extra meaning when embedded in the `message` string.
 
 #### method()
 
@@ -154,23 +159,19 @@ Placing a `#` next to a number will style them as a number.
 
 #### >indent
 
-**Note:** Not implemented yet.
-
 ```ruby
-lit ">message"
+lit "> message"
 ```
 
-Placing a `>` at the start of a message will indent the resulting log in the console. Multiple `>>>` symbols can be used and for every one, one space of indentation will be added.
+Placing a `>` at the start of a message will indent the log in the console. Multiple `>>>` symbols can be used and for each one, two spaces of indentation will be added. Indentation is not preserved when using `@status` or `@type` filters.
 
 #### ^separator
 
-**Note:** Not implemented yet.
-
 ```ruby
-lit "^message"
+lit "^ message"
 ```
 
-Placing a `^` at the start of a message will add a line break above the resulting log in the console. Multiple `^^^` symbols can be used and for every one, one line break will be added.
+Placing a `^` at the start of a message will add a line break above the log in the console. Multiple `^^^` symbols can be used and for each one, one line break will be added. Line breaks are not preserved when using `@status` or `@type` filters.
 
 ### Code as comments
 
