@@ -107,3 +107,17 @@ if ENV['LIT_ENABLED'] && ENV['LIT_ENABLED'].to_i >= (Time.now.to_i() - 1) && ENV
     end
   end
 end
+
+##
+# Add custom Pry command for a nicer exiting experience.
+# @see https://github.com/pry/pry/wiki/Custom-commands
+##
+command_description = "Alias for `exit`"
+
+Pry::Commands.block_command "x", command_description do
+  run "exit"
+end
+
+Pry::Commands.block_command "X", command_description do
+  run "exit"
+end

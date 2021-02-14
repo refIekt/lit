@@ -85,7 +85,10 @@ module LitCLI
       puts "#{indent}🔥 Press ENTER to step or P to Pry:"
       input = gets.chomp
       binding while input == nil
-      @@is_prying = true if input.downcase == "p"
+      if input.downcase == "p"
+        puts @@pastel.dim("Enter X to exit Pry or !!! to exit program.")
+        @@is_prying = true
+      end
     end
   end
 

@@ -48,6 +48,8 @@ Step through the code. The terminal will stop at each `lit()` message, then prom
 lit @step ruby script.rb
 ```
 
+When in a Pry session, enter `x` to exit Pry or `!!!` to exit the program.
+
 **Note:** Only files required via `require_relative` are currently supported for Pry session.  
 **Note:** Pry is not available to `lit()` messages in the *first* file to `require 'lit_cli'`, so require Lit in your application's entry point / main file if you need this feature.
 
