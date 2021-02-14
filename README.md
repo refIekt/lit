@@ -139,8 +139,6 @@ Special characters convey extra meaning when embedded in the `message` string.
 
 #### method()
 
-**Note:** Not implemented yet.
-
 ```ruby
 lit "message method()"
 ```
@@ -148,8 +146,6 @@ lit "message method()"
 Placing `()` next to a word will style them as a method.
 
 #### #number
-
-**Note:** Not implemented yet.
 
 ```ruby
 lit "message #1"

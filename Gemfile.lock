@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    lit-cli (0.7.0)
+    lit-cli (0.8.0)
       pastel
       pry
 

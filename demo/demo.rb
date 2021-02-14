@@ -20,6 +20,11 @@ class Demo
     lit "I am never gonna financially recover from this", :error, :person
     amount_owing = 5 * 5 * 5 * 5 * 5 * 5 * 5 * 5 * 5
 
+    array = [1, 2, 3]
+    lit "Automatic method() highlighting including methods_with_underscores(): #{array}"
+
+    lit "Automatic number highlighting is as easy as #123... TODO: #1 Get Milk. #2 Drink Milk."
+
     🔥 "The meaning of life is to find meaning", :debug, :person
     woke = true
 

@@ -47,7 +47,7 @@ module LitCLI
     # Context.
     output << LitCLI.format(" #{context}", styles: [:bold, :dim])
 
-    # Message.
+    # Line break.
     while message.start_with?('^')
       message.delete_prefix!('^').strip!
       unless @@config.status || @@config.type
@@ -55,6 +55,7 @@ module LitCLI
       end
     end
 
+    # Indent.
     indent = ''
     while message.start_with?('>')
       message.delete_prefix!('>').strip!
@@ -64,8 +65,17 @@ module LitCLI
       end
     end
 
-    output << " #{message}"
-    puts output
+    # Highlight numbers and methods.
+    words = []
+    message.split(/(#\d+|\w+\(\))/).each do |word|
+      if word.start_with?('#') || word.end_with?(')')
+        words << @@pastel.yellow(word)
+      else
+        words << word
+      end
+    end
+
+    puts output << " " + words.join()
 
     return indent
   end
