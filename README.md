@@ -15,22 +15,15 @@ Lit lets you create console logs that are only visible after prefixing a command
 
 ## Usage
 
-Simply start any command with `lit`. For example `rails server` becomes:
-```
-lit rails server
-```
-
-A script like `ruby script.rb` becomes:
+Simply start any command with `lit`. For example a script like `ruby script.rb` becomes:
 ```
 lit ruby script.rb
 ```
 
 Then run the application and watch the terminal window for Lit messages:
-<pre class="code" style="background:black">
-🔥 12:50 <span style="color:blue">ℹ info</span> Half price books at Jane's Book Emporium
-🔥 12:50 <span style="color:green">✔ pass</span> Amazing news, we're getting married!
-🔥 12:50 <span style="color:red">⨯ fail</span> They've run out of ice cream Timmy
-</pre>
+<p align="center">
+  <img src="/assets/images/lit.png" width="850"/>
+</p>
 
 ### Flags
 
@@ -42,6 +35,8 @@ lit @<flag-name> ruby <script-name>.rb
 Flags start with an `@` instead of a `--` so that they aren't confused with flags for the original command that Lit is firing off.
 
 #### @step
+
+<img src="/assets/gifs/step.gif" width="750"/>
 
 Step through the code. The terminal will stop at each `lit()` message, then prompt you to press *Enter* to continue to the next message or press *P* to enter a Pry session.
 ```
@@ -75,6 +70,8 @@ lit @type=cat,dog ruby script.rb
 Types are optional and represent the type of data, similar to a class.
 
 #### @delay
+
+<img src="/assets/gifs/delay.gif" width="750"/>
 
 Delay the execution of a message to make fast outputting logs easier to read. The default delay is `0` seconds (no delay) but can be any positive `Integer` or `Float`, for example:
 ```
