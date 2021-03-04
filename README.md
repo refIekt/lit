@@ -186,6 +186,8 @@ action.control = control
 
 Now you've commented your code and your comments double as logs.
 
+## Emoji support
+
 You can even use the emoji `🔥()` instead of `lit()` to call the method... cause why not? Climate change is real and we're all going to die anyway. So the final code could be:
 
 ```ruby
