@@ -7,6 +7,8 @@
   <a href="https://rubygems.org/gems/lit-cli">
     <img src="https://badge.fury.io/rb/lit-cli.svg" alt="Gem Version" />
   </a>
+  <img src="https://img.shields.io/github/languages/code-size/refIekt/lit" alt="GitHub code size in bytes">
+  <img src="https://img.shields.io/gem/dt/lit-cli">
 </p>
 
 *Shine a light on terminal commands.* 🔥
